@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin/*(origins = "http://localhost:8081")*/
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class EmployeeController {
     private final EmployeeService service;
     @GetMapping("/employees")
-    public ResponseEntity<List<Employee>> getAllEmployees(@RequestParam(required = false) String title) {
-        var employees = service.getAllEmployees(title);
+    public ResponseEntity<List<Employee>> getAllEmployees() {
+        var employees = service.getAllEmployees();
         if (employees.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

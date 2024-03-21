@@ -3,10 +3,7 @@ package com.example.kms.service;
 import com.example.kms.entity.Employee;
 import com.example.kms.form.EmployeeForm;
 import com.example.kms.repository.EmployeeRepository;
-import com.example.kms.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,11 +13,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
-    public List<Employee> getAllEmployees(String title) {
+    public List<Employee> getAllEmployees() {
 
         List<Employee> employees = new ArrayList<>();
 
-        if (title == null)
+        //if (title == null)
             employees.addAll(employeeRepository.findAll()); // employeeRepository.findAll().forEach(employees::add);
         /*else
             employeeRepository.findByTitleContaining(title).forEach(employees::add);*/

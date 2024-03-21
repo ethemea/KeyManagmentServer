@@ -2,22 +2,16 @@ package com.example.kms.controller;
 
 import com.example.kms.entity.Employee;
 import com.example.kms.form.EmployeeForm;
-import com.example.kms.repository.EmployeeRepository;
-import com.example.kms.repository.UserRepository;
-import com.example.kms.service.AuthenticationService;
 import com.example.kms.service.EmployeeService;
-import io.swagger.annotations.Api;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8081")
-@Api("Employee controller")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")

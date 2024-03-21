@@ -1,18 +1,9 @@
 package com.example.kms.controller;
 
-import com.example.kms.entity.Employee;
-import com.example.kms.entity.Role;
-import com.example.kms.entity.User;
-import com.example.kms.repository.EmployeeRepository;
-import com.example.kms.repository.UserRepository;
-import io.swagger.annotations.Api;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:8081")
-@Api("User controller")
 @RestController
 @RequestMapping("/api")
 public class UserController {

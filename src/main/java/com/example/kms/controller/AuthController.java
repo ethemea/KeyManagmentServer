@@ -1,12 +1,9 @@
 package com.example.kms.controller;
 
-import com.example.kms.entity.Employee;
 import com.example.kms.entity.User;
 import com.example.kms.form.*;
 import com.example.kms.service.AuthenticationService;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,19 +13,16 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-@Api("Auth controller")
 public class AuthController {
 
     private final AuthenticationService service;
 
     @PostMapping("/users/auth")
-    @ApiOperation("User authentication")
     public ResponseEntity<AuthResponse> auth(@RequestBody AuthForm form) {
         return ResponseEntity.ok(service.auth(form));
     }
 
     /*@PostMapping("/users/register")
-    @ApiOperation("User registration")
     public ResponseEntity<RegResponse> register(@RequestBody RegForm form) {
         return ResponseEntity.ok(service.register(form));
     }*/

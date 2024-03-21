@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:8081", "http://muddled-event-production.up.railway.app"})
+@CrossOrigin(origins = "http://localhost:8081", exposedHeaders = "Access-Control-Allow-Origin")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")

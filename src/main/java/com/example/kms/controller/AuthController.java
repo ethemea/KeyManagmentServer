@@ -35,6 +35,7 @@ public class AuthController {
         return ResponseEntity.ok(service.auth(form));
     }
 
+    @CrossOrigin(origins = "http://localhost:8081")
     @PostMapping("/users/register")
     @ApiOperation("User registration")
     public ResponseEntity<Response> register(@RequestBody RegForm form) {

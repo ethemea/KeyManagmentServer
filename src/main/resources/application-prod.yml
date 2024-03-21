@@ -4,5 +4,3 @@ spring:
     username: ${PROD_DB_USERNAME}
     password: ${PROD_DB_PASSWORD}
     name: kms
-    #driver-class-name: org.postgresql.Driver
-

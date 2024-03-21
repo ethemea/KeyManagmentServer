@@ -1,4 +1,4 @@
-package com.example.kms;
+package com.example.kms.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

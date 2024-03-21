@@ -3,10 +3,7 @@ package com.example.kms.entity;
 import java.util.Collection;
 import java.util.Set;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,21 +16,24 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "temp")
+@Entity(name = "users")
 @Table
 public class User implements UserDetails {
     @Id
-    @GeneratedValue
-    private Integer admin_id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer user_id;
     private String username;
     private String password;
-    private String email;
+    private Integer employee_id;
+    private String salt;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Set.of();
+        /*return Set.of();*/
+        return role.getAuthorities();
     }
-
 
     @Override
     public String getUsername() {
@@ -44,7 +44,6 @@ public class User implements UserDetails {
     public String getPassword() {
         return password;
     }
-
 
     @Override
     public boolean isAccountNonExpired() {

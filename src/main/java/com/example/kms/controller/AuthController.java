@@ -31,14 +31,14 @@ public class AuthController {
     @CrossOrigin(origins = "http://localhost:8081")
     @PostMapping("/users/auth")
     @ApiOperation("Log In for user")
-    public ResponseEntity<Response> auth(@RequestBody LoginForm form) {
+    public ResponseEntity<AuthResponse> auth(@RequestBody AuthForm form) {
         return ResponseEntity.ok(service.auth(form));
     }
 
     @CrossOrigin(origins = "http://localhost:8081")
     @PostMapping("/users/register")
     @ApiOperation("User registration")
-    public ResponseEntity<Response> register(@RequestBody RegForm form) {
+    public ResponseEntity<RegResponse> register(@RequestBody RegForm form) {
         return ResponseEntity.ok(service.register(form));
     }
 

@@ -18,27 +18,27 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
 
-    public Response register(RegForm form) {
+    public RegResponse register(RegForm form) {
         var user = User.builder()
                 .username(form.getUsername())
                 .password(passwordEncoder.encode(form.getPassword()))
                 .employee_id(form.getEmployee_id())
                 .salt(form.getSalt())
-                .role(Role.USER)
+                .role(Role.USER) // !!!
                 .build();
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
-        return Response.builder()
+        return RegResponse.builder()
                 .token(jwtToken)
                 .build();
     }
 
-    public Response auth(LoginForm form) {
+    public AuthResponse auth(AuthForm form) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(form.getUsername(), form.getPassword()));
         var user = userRepository.findByUsername(form.getUsername())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
-        return Response.builder()
+        return AuthResponse.builder()
                 .token(jwtToken)
                 .build();
     }

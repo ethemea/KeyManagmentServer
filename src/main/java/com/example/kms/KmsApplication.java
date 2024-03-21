@@ -1,4 +1,6 @@
 package com.example.kms;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,11 +10,25 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 
+@OpenAPIDefinition(
+        servers = {
+                @Server(
+                        description = "Local ENV",
+                        url = "http://localhost:8080"
+                ),
+                @Server(
+                        description = "PROD ENV",
+                        url = "https://muddled-event-production.up.railway.app"
+                )
+        }
+)
+
 @SpringBootApplication
 public class KmsApplication {
     public static void main(String[] args) {
         SpringApplication.run(KmsApplication.class, args);
     }
+
 
     @Bean
     public OpenAPI customOpenAPI(@Value("2.2.0") String appVersion) {

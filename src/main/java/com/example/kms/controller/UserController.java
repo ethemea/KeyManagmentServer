@@ -3,7 +3,7 @@ package com.example.kms.controller;
 
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin/*(origins = "http://localhost:8081")*/
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
 public class UserController {

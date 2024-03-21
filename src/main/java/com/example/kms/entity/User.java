@@ -24,15 +24,23 @@ public class User implements UserDetails {
     private Integer user_id;
     private String username;
     private String password;
-    private Integer employee_id;
     private String salt;
+    //private String employee_id;
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @MapsId
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         /*return Set.of();*/
         return role.getAuthorities();
+    }
+
+    public Employee getEmployee() {
+        return employee;
     }
 
     @Override

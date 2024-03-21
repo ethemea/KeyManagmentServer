@@ -1,8 +1,10 @@
 package com.example.kms.service;
 
+import com.example.kms.entity.Employee;
 import com.example.kms.entity.Role;
 import com.example.kms.entity.User;
 import com.example.kms.form.*;
+import com.example.kms.repository.EmployeeRepository;
 import com.example.kms.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthenticationService {
     private final UserRepository userRepository;
+    private final EmployeeRepository employeeRepository;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
@@ -22,7 +25,7 @@ public class AuthenticationService {
         var user = User.builder()
                 .username(form.getUsername())
                 .password(passwordEncoder.encode(form.getPassword()))
-                .employee_id(form.getEmployee_id())
+                //.employee_id(form.getEmployee_id())
                 .salt(form.getSalt())
                 .role(Role.USER) // !!!
                 .build();
@@ -33,14 +36,32 @@ public class AuthenticationService {
                 .build();
     }
 
+    public User createUser(Integer employeeId, RegForm form) {
+        Employee employee = employeeRepository.findById(employeeId)
+                .orElseThrow(() -> new RuntimeException("Not found employee with id = " + employeeId));
+        var user = User.builder()
+                .username(form.getUsername())
+                .password(passwordEncoder.encode(form.getPassword()))
+                .employee(employee)
+                .salt(form.getSalt())
+                .role(Role.USER) // !!!
+                .build();
+        userRepository.save(user);
+        return user;
+    }
+
     public AuthResponse auth(AuthForm form) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(form.getUsername(), form.getPassword()));
         var user = userRepository.findByUsername(form.getUsername())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
+        var employeeId = user.getEmployee().getEmployee_id();
+        Employee employee = employeeRepository.findById(employeeId)
+                .orElseThrow(() -> new RuntimeException("Not found employee with id = " + employeeId));
         return AuthResponse.builder()
                 .token(jwtToken)
                 .username(user.getUsername())
+                .employee(employee)
                 .build();
     }
 

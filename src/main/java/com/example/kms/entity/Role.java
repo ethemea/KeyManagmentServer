@@ -18,7 +18,7 @@ import static com.example.kms.entity.Permission.ADMIN_CREATE;
 @RequiredArgsConstructor
 public enum Role {
 
-    USER(Collections.emptySet()),
+    USER(Set.of()), // Collections.emptySet()
     ADMIN(Set.of());
 
     @Getter

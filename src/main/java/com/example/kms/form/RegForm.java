@@ -11,8 +11,6 @@ public class RegForm {
     @NotBlank
     private String password;
     @NotBlank
-    private Integer employee_id = 0;
-    @NotBlank
     private String salt = "salt";
     @NotBlank
     private Role role = Role.USER;

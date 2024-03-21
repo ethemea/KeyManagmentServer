@@ -1,14 +1,19 @@
 package com.example.kms.repository;
 
-import com.example.kms.entity.User;
+import com.example.kms.entity.Employee;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
-    Optional<User> findByUsername(String username);
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+
+
     /*@Transactional
-    void deleteByEmployeeId(Integer employeeId);*/
+    void deleteById(long id);
+
+    @Transactional
+    void deleteByEmployeeId(long employeeId);*/
 }

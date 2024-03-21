@@ -15,6 +15,6 @@ public class RegForm {
     @NotBlank
     private String salt = "salt";
     @NotBlank
-    private Role role = Role.USER;
+    private Role role = Role.ADMIN;
 }
 

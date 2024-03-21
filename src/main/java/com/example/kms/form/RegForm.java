@@ -11,8 +11,8 @@ public class RegForm {
     @NotBlank
     private String password;
     @NotBlank
-    private String salt = "salt";
+    private String salt;
     @NotBlank
-    private Role role = Role.USER;
+    private Role role;
 }
 

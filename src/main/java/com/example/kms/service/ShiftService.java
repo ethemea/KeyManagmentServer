@@ -36,4 +36,12 @@ public class ShiftService {
                 .orElseThrow(() -> new RuntimeException("Not found Shift with id = " + id));
     }
 
+    public Shift endShift(Integer id) {
+        Shift shift = shiftRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Not found Shift with id = " + id));
+        if (shift.getEnd_date_time() != null) throw new RuntimeException("Shift with id " + id + " has already ended");
+        shift.setEnd_date_time(new Timestamp(System.currentTimeMillis()));
+        return shiftRepository.save(shift);
+    }
+
 }

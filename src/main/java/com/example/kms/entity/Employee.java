@@ -18,17 +18,14 @@ public class Employee {
     private String middle_name;
     private String photo_url;
     @Enumerated(EnumType.STRING)
-    private Type type;
-    /*@OneToOne(mappedBy = "employee", fetch = FetchType.EAGER)
-    private User user;*/
+    private EmployeeType employeeType;
 
-
-    public Employee(String first_name, String second_name, String middle_name, String photo_url, Type type) {
+    public Employee(String first_name, String second_name, String middle_name, String photo_url, EmployeeType employeeType) {
         this.first_name = first_name;
         this.second_name = second_name;
         this.middle_name = middle_name;
         this.photo_url = photo_url;
-        this.type = type;
+        this.employeeType = employeeType;
     }
 
     public void setFirst_name(String first_name) {
@@ -47,8 +44,8 @@ public class Employee {
         this.photo_url = photo_url;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setEmployeeType(EmployeeType employeeType) {
+        this.employeeType = employeeType;
     }
 
     public String getFirst_name() {
@@ -67,8 +64,8 @@ public class Employee {
         return photo_url;
     }
 
-    public Type getType() {
-        return type;
+    public EmployeeType getEmployeeType() {
+        return employeeType;
     }
 
     public Integer getEmployee_id() {

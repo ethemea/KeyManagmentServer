@@ -37,6 +37,11 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public User getUserById(Integer id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Not found user with id = " + id));
+    }
+
    /* public Employee createEmployee(EmployeeForm employee) {
 
         Employee _employee = userRepository.save(new Employee(employee.getFirst_name(),

@@ -1,20 +1,20 @@
 package com.example.kms.form;
 
-import com.example.kms.entity.Type;
+import com.example.kms.entity.EmployeeType;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
 public class EmployeeForm {
     @NotBlank
-    private String first_name;
+    private String firstName;
     @NotBlank
-    private String second_name;
+    private String secondName;
     @NotBlank
-    private String middle_name;
+    private String middleName;
     @NotBlank
-    private String photo_url;
+    private String photoUrl;
     @NotBlank
-    private Type type;
+    private EmployeeType employeeType;
 
 }

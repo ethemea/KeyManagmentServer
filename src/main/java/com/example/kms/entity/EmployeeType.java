@@ -3,7 +3,7 @@ package com.example.kms.entity;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public enum Type {
+public enum EmployeeType {
     SERVICE(),
     TEACHER(),
     SECURITY(),

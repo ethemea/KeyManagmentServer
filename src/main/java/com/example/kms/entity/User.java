@@ -25,12 +25,10 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private String salt;
-    //private String employee_id;
     @Enumerated(EnumType.STRING)
     private Role role;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @MapsId
     @JoinColumn(name = "employee_id")
     private Employee employee;
     @Override

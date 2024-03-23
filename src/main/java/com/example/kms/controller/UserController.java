@@ -42,16 +42,12 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    /*
-
-    @GetMapping({ "/users/{id}", "/employees/{id}/user" })
+    @Operation(summary = "Get user by id", description = "Returns user data by id")
+    @GetMapping({ "/users/{id}"/*, "/employees/{id}/user"*/ })
     public ResponseEntity<User> getUserById(@PathVariable(value = "id") Integer id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Not found user with id = " + id));
-
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<>(service.getUserById(id), HttpStatus.OK);
     }
-
+/*
     @DeleteMapping("/employees/{employeeId}/user")
     public ResponseEntity<User> deleteUserOfEmployee(@PathVariable(value = "employeeId") Integer employeeId) {
         if (!employeeRepository.existsById(employeeId)) {

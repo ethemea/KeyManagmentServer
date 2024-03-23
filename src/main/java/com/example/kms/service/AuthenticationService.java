@@ -21,7 +21,7 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
 
-    public RegResponse register(RegForm form) {
+    /*public RegResponse register(RegForm form) {
         var user = User.builder()
                 .username(form.getUsername())
                 .password(passwordEncoder.encode(form.getPassword()))
@@ -33,7 +33,7 @@ public class AuthenticationService {
         return RegResponse.builder()
                 .token(jwtToken)
                 .build();
-    }
+    }*/
 
     public User createUser(Integer employeeId, RegForm form) {
         Employee employee = employeeRepository.findById(employeeId)

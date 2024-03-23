@@ -13,13 +13,13 @@ import io.swagger.v3.oas.models.info.License;
 @OpenAPIDefinition(
         servers = {
                 @Server(
-                        description = "Local ENV",
-                        url = "https://muddled-event-production.up.railway.app"
-                )/*,
-                @Server(
                         description = "PROD ENV",
                         url = "https://muddled-event-production.up.railway.app"
-                )*/
+                ),
+                @Server(
+                        description = "Local ENV",
+                        url = "http://localhost:8080"
+                )
         }
 )
 

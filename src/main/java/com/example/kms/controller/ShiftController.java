@@ -45,7 +45,7 @@ public class ShiftController {
     }
 
     @Operation(summary = "Get last shift by user id", description = "Returns shift data")
-    @GetMapping("/users/{userId}/shift/")
+    @GetMapping("/users/{userId}/shift")
     public ResponseEntity<Shift> getLastShiftByUserId(@PathVariable("userId") Integer userId) {
         return new ResponseEntity<>(service.getLastShiftByUserId(userId), HttpStatus.OK);
     }

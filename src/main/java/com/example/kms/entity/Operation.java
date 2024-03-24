@@ -1,9 +1,16 @@
 package com.example.kms.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.sql.Timestamp;
 
+@Entity(name = "operations")
+@Table
+@NoArgsConstructor
+@AllArgsConstructor
 public class Operation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -33,10 +33,10 @@ public class OperationController {
         return new ResponseEntity<>(service.createOperation(form), HttpStatus.CREATED);
     }
 
-    @io.swagger.v3.oas.annotations.Operation(summary = "Get all operations by user id", description = "Returns operations data")
-    @GetMapping("users/{userId}/operations")
-    public ResponseEntity<List<Operation>> getAllOperations(@PathVariable("userId") Integer userId){
-        var operations = service.getAllOperationsByShiftId(userId);
+    @io.swagger.v3.oas.annotations.Operation(summary = "Get all operations by shift id", description = "Returns operations data")
+    @GetMapping("shifts/{shiftId}/operations")
+    public ResponseEntity<List<Operation>> getAllOperations(@PathVariable("shiftId") Integer shiftId){
+        var operations = service.getAllOperationsByShiftId(shiftId);
         if (operations.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

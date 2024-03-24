@@ -20,6 +20,12 @@ public class Key {
     private KeyState keyState;
     private boolean main;
 
+    public Key(Audience audience, KeyState keyState, boolean main) {
+        this.audience = audience;
+        this.keyState = keyState;
+        this.main = main;
+    }
+
     public Audience getAudience() {
         return audience;
     }

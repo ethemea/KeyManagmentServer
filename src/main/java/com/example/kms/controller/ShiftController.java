@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class ShiftController {
     private final ShiftService service;
-
+/*
     @Operation(summary = "Get all shifts", description = "Returns shifts data")
     @GetMapping("/shifts")
     public ResponseEntity<List<Shift>> getAllShifts() {
@@ -42,6 +42,6 @@ public class ShiftController {
     @Operation(summary = "Add shift end date and time", description = "Returns updated shift data")
     public ResponseEntity<Shift> endShift(@PathVariable("id") Integer id) {
         return new ResponseEntity<>(service.endShift(id), HttpStatus.OK);
-    }
+    }*/
 
 }

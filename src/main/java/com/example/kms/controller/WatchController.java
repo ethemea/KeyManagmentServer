@@ -17,7 +17,7 @@ import java.util.List;
 public class WatchController {
     private final WatchService service;
 
-    @Operation(summary = "Get all watches", description = "Returns watches data")
+    /*@Operation(summary = "Get all watches", description = "Returns watches data")
     @GetMapping("/watches")
     public ResponseEntity<List<Watch>> getAllWatches() {
         var watches = service.getAllWatches();
@@ -36,5 +36,5 @@ public class WatchController {
     @PostMapping("/watches")
     public ResponseEntity<Watch> createWatch(Integer buildingNumber) {
         return new ResponseEntity<>(service.createWatch(buildingNumber), HttpStatus.CREATED);
-    }
+    }*/
 }

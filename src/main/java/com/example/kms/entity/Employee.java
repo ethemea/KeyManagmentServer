@@ -18,14 +18,14 @@ public class Employee {
     private String middle_name;
     private String photo_url;
     @Enumerated(EnumType.STRING)
-    private EmployeeType employeeType;
+    private EmployeeType employee_type;
 
-    public Employee(String first_name, String second_name, String middle_name, String photo_url, EmployeeType employeeType) {
+    public Employee(String first_name, String second_name, String middle_name, String photo_url, EmployeeType employee_type) {
         this.first_name = first_name;
         this.second_name = second_name;
         this.middle_name = middle_name;
         this.photo_url = photo_url;
-        this.employeeType = employeeType;
+        this.employee_type = employee_type;
     }
 
     public void setFirst_name(String first_name) {
@@ -44,8 +44,8 @@ public class Employee {
         this.photo_url = photo_url;
     }
 
-    public void setEmployeeType(EmployeeType employeeType) {
-        this.employeeType = employeeType;
+    public void setEmployee_type(EmployeeType employee_type) {
+        this.employee_type = employee_type;
     }
 
     public String getFirst_name() {
@@ -64,8 +64,8 @@ public class Employee {
         return photo_url;
     }
 
-    public EmployeeType getEmployeeType() {
-        return employeeType;
+    public EmployeeType getEmployee_type() {
+        return employee_type;
     }
 
     public Integer getEmployee_id() {

@@ -20,8 +20,8 @@ public class EmployeeService {
     }
 
     public Employee createEmployee(EmployeeForm employee) {
-        return employeeRepository.save(new Employee(employee.getFirstName(), employee.getSecondName(),
-                employee.getMiddleName(), employee.getPhotoUrl(), employee.getEmployeeType()));
+        return employeeRepository.save(new Employee(employee.getFirst_name(), employee.getSecond_name(),
+                employee.getMiddle_name(), employee.getPhoto_url(), employee.getEmployee_type()));
     }
 
     public Employee getEmployeeById(Integer id) {
@@ -32,11 +32,11 @@ public class EmployeeService {
     public Employee updateEmployee(Integer id, EmployeeForm employee) {
         Employee _employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Not found Employee with id = " + id));
-        _employee.setFirst_name(employee.getFirstName());
-        _employee.setSecond_name(employee.getSecondName());
-        _employee.setMiddle_name(employee.getMiddleName());
-        _employee.setMiddle_name(employee.getPhotoUrl());
-        _employee.setEmployeeType(employee.getEmployeeType());
+        _employee.setFirst_name(employee.getFirst_name());
+        _employee.setSecond_name(employee.getSecond_name());
+        _employee.setMiddle_name(employee.getMiddle_name());
+        _employee.setMiddle_name(employee.getPhoto_url());
+        _employee.setEmployee_type(employee.getEmployee_type());
         return employeeRepository.save(_employee);
     }
 

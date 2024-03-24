@@ -7,14 +7,14 @@ import lombok.Data;
 @Data
 public class EmployeeForm {
     @NotBlank
-    private String firstName;
+    private String first_name;
     @NotBlank
-    private String secondName;
+    private String second_name;
     @NotBlank
-    private String middleName;
+    private String middle_name;
     @NotBlank
-    private String photoUrl;
+    private String photo_url;
     @NotBlank
-    private EmployeeType employeeType;
+    private EmployeeType employee_type;
 
 }

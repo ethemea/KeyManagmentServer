@@ -1,8 +1,5 @@
 package com.example.kms.form;
 
-import com.example.kms.entity.Employee;
-import com.example.kms.entity.Key;
-import com.example.kms.entity.Shift;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -11,11 +8,11 @@ import java.sql.Timestamp;
 @Data
 public class OperationForm {
     @NotBlank
-    private Key key;
+    private Integer key_id;
     @NotBlank
-    private Employee employee;
+    private Integer employee_id;
     @NotBlank
-    private Shift shift;
+    private Integer shift_id;
     @NotBlank
     private Timestamp give_date_time;
 }

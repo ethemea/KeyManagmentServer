@@ -1,6 +1,5 @@
 package com.example.kms.form;
 
-import com.example.kms.entity.Audience;
 import com.example.kms.entity.KeyState;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -8,7 +7,7 @@ import lombok.Data;
 @Data
 public class KeyForm {
     @NotBlank
-    private Audience audience;
+    private Integer audience_id;
     @NotBlank
     private KeyState keyState;
     @NotBlank

@@ -1,13 +1,19 @@
 package com.example.kms.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.data.relational.core.mapping.Table;
 
+@Entity(name = "keys")
+@Table
+@NoArgsConstructor
+@AllArgsConstructor
 public class Key {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer key_id;
-    @OneToMany(fetch = FetchType.EAGER)
-    @MapsId
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "audience_id")
     private Audience audience;
     @Enumerated(EnumType.STRING)

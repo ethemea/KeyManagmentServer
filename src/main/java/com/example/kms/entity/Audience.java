@@ -21,6 +21,14 @@ public class Audience {
     @Enumerated(EnumType.STRING)
     private AudienceType audienceType;
 
+    public Audience(Integer number, Integer floor, Integer capacity, Signalisation signalisation, AudienceType audienceType) {
+        this.number = number;
+        this.floor = floor;
+        this.capacity = capacity;
+        this.signalisation = signalisation;
+        this.audienceType = audienceType;
+    }
+
     public Integer getNumber() {
         return number;
     }

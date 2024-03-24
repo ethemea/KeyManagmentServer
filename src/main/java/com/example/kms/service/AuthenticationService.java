@@ -59,6 +59,7 @@ public class AuthenticationService {
                 .orElseThrow(() -> new RuntimeException("Not found employee with id = " + employeeId));
         return AuthResponse.builder()
                 .token(jwtToken)
+                .user_id(user.getUser_id())
                 .username(user.getUsername())
                 .employee(employee)
                 .build();

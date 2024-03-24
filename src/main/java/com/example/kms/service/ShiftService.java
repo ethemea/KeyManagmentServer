@@ -44,4 +44,18 @@ public class ShiftService {
         return shiftRepository.save(shift);
     }
 
+    public Shift getLastShiftByUserId(Integer userId)  {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Not found user with id = " + userId));
+        List<Shift> shifts = shiftRepository.findByWatchman(user);
+        Shift shift = new Shift();
+        Integer id = 0;
+        for (Shift _shift : shifts){
+            if (_shift.getShift_id() > id) {
+                shift = _shift;
+            }
+        }
+        return shift;
+    }
+
 }

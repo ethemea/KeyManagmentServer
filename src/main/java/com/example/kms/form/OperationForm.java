@@ -13,6 +13,4 @@ public class OperationForm {
     private Integer employee_id;
     @NotBlank
     private Integer shift_id;
-    @NotBlank
-    private Timestamp give_date_time;
 }

@@ -9,6 +9,7 @@ import com.example.kms.repository.ShiftRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -27,7 +28,7 @@ public class OperationService {
                 .orElseThrow(() -> new RuntimeException("Not found employee audience id = " + form.getEmployee_id()));
         Shift shift = shiftRepository.findById(form.getShift_id())
                 .orElseThrow(() -> new RuntimeException("Not found user shift id = " + form.getShift_id()));
-        return operationRepository.save(new Operation(key, employee, shift, form.getGive_date_time(), null));
+        return operationRepository.save(new Operation(key, employee, shift, new Timestamp(System.currentTimeMillis()), null));
     }
 
     public List<Operation> getAllOperations(){

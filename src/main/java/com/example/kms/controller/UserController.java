@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class UserController {
     private final UserService service;
-    /*@Operation(summary = "Get all users", description = "Returns users data")
+    @Operation(summary = "Get all users", description = "Returns users data")
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
         var users = service.getAllUsers();
@@ -43,10 +43,10 @@ public class UserController {
     }
 
     @Operation(summary = "Get user by id", description = "Returns user data by id")
-    @GetMapping({ "/users/{id}"*//*, "/employees/{id}/user"*//* })
+    @GetMapping({ "/users/{id}"/*, "/employees/{id}/user"*/ })
     public ResponseEntity<User> getUserById(@PathVariable(value = "id") Integer id) {
         return new ResponseEntity<>(service.getUserById(id), HttpStatus.OK);
-    }*/
+    }
 /*
     @DeleteMapping("/employees/{employeeId}/user")
     public ResponseEntity<User> deleteUserOfEmployee(@PathVariable(value = "employeeId") Integer employeeId) {

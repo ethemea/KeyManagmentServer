@@ -31,6 +31,7 @@ public class SecurityConfig {
             "/swagger-resources",
             "/swagger-resources/**",
             "/configuration/ui",
+            "/configuration/**",
             "/configuration/security",
             "/swagger-ui/**",
             "/webjars/**",
@@ -44,10 +45,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(customizer -> customizer
                 .requestMatchers(WHITE_LIST_URL).permitAll()
                 .requestMatchers("/api/**").permitAll()
-                //.requestMatchers("/**").permitAll()
-                .requestMatchers("/api/users/**").permitAll()
-                .requestMatchers("/api/employees/**").permitAll()
-                .anyRequest()
+                //.requestMatchers("/api/users/**").permitAll()
+                //.requestMatchers("/api/employees/**").permitAll()
+                .requestMatchers("/**")
                 .authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))

@@ -35,7 +35,7 @@ public class OperationController {
 
     @io.swagger.v3.oas.annotations.Operation(summary = "Get all operations by shift id", description = "Returns operations data")
     @GetMapping("shifts/{shiftId}/operations")
-    public ResponseEntity<List<Operation>> getAllOperations(@PathVariable("shiftId") Integer shiftId){
+    public ResponseEntity<List<Operation>> getAllOperationsByShiftId(@PathVariable("shiftId") Integer shiftId){
         var operations = service.getAllOperationsByShiftId(shiftId);
         if (operations.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

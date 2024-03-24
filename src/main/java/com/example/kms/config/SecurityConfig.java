@@ -45,9 +45,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(customizer -> customizer
                 .requestMatchers(WHITE_LIST_URL).permitAll()
                 .requestMatchers("/api/**").permitAll()
-                //.requestMatchers("/api/users/**").permitAll()
-                //.requestMatchers("/api/employees/**").permitAll()
-                //.requestMatchers("/**")
+                .requestMatchers("/api/users/**").permitAll()
+                .requestMatchers("/api/employees/**").permitAll()
+                .requestMatchers("/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 )

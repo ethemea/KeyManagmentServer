@@ -39,7 +39,7 @@ public class ShiftController {
     }
 
     @PutMapping("/shifts/{id}")
-    @Operation(summary = "Add shift end date and time", description = "Returns updated shift data")
+    @Operation(summary = "Add shift end date and time (finish shift)", description = "Returns updated shift data")
     public ResponseEntity<Shift> endShift(@PathVariable("id") Integer id) {
         return new ResponseEntity<>(service.endShift(id), HttpStatus.OK);
     }

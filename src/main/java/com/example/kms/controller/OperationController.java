@@ -42,4 +42,10 @@ public class OperationController {
         }
         return new ResponseEntity<>(operations, HttpStatus.OK);
     }
+
+    @PutMapping("/operations/{id}")
+    @io.swagger.v3.oas.annotations.Operation(summary = "Add operation return date and time (finish operation)", description = "Returns updated operation data")
+    public ResponseEntity<Operation> endOperation(@PathVariable("id") Integer id) {
+        return new ResponseEntity<>(service.endOperation(id), HttpStatus.OK);
+    }
 }

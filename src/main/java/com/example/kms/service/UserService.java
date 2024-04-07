@@ -1,7 +1,5 @@
 package com.example.kms.service;
 
-import com.example.kms.entity.Employee;
-import com.example.kms.entity.Role;
 import com.example.kms.entity.User;
 import com.example.kms.form.RegForm;
 import com.example.kms.repository.UserRepository;
@@ -17,9 +15,8 @@ public class UserService {
     private final UserRepository userRepository;
     public List<User> getAllUsers() {
         //if (title == null)
-        List<User> users = new ArrayList<>(userRepository.findAll()); // userRepository.findAll().forEach(employees::add);
         /*else userRepository.findByTitleContaining(title).forEach(employees::add);*/
-        return users;
+        return new ArrayList<>(userRepository.findAll());
 
     }
 
@@ -28,7 +25,7 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("Id " + id + " not found"));
         user.setPassword(form.getUsername());
         user.setPassword(form.getPassword());
-        user.setSalt(form.getSalt());
+        //user.setSalt(form.getSalt());
         user.setRole(form.getRole());
         return userRepository.save(user);
     }
@@ -37,7 +34,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public User getUserById(Integer id) {
+    public User getUserById(Integer id) { // todo убрать пароли из зоны видимости!!!
         return userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Not found user with id = " + id));
     }

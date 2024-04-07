@@ -23,11 +23,6 @@ public class AuthController {
         return ResponseEntity.ok(service.auth(form));
     }
 
-    /*@PostMapping("/users/register")
-    public ResponseEntity<RegResponse> register(@RequestBody RegForm form) {
-        return ResponseEntity.ok(service.register(form));
-    }*/
-
     @Operation(summary = "User creation", description = "Returns user data after successful creation")
     @PostMapping("/employees/{employeeId}/user")
     public ResponseEntity<User> createUser(@PathVariable(value = "employeeId") Integer employeeId,

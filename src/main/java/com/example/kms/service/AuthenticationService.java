@@ -42,8 +42,8 @@ public class AuthenticationService {
                 .username(form.getUsername())
                 .password(passwordEncoder.encode(form.getPassword()))
                 .employee(employee)
-                .salt(form.getSalt())
-                .role(Role.USER) // !!!
+                .salt("salt") // todo
+                .role(Role.USER) // !!! todo
                 .build();
         userRepository.save(user);
         return user;

@@ -10,8 +10,8 @@ public class RegForm {
     private String username;
     @NotBlank
     private String password;
-    @NotBlank
-    private String salt;
+    /*@NotBlank
+    private String salt;*/
     @NotBlank
     private Role role;
 }

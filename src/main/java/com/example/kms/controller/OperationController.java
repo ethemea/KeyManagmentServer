@@ -45,8 +45,8 @@ public class OperationController {
 
     @io.swagger.v3.oas.annotations.Operation(summary = "Get operation by id", description = "Returns operation data")
     @GetMapping("/operations/{id}")
-    public ResponseEntity<Operation> getOperation(@PathVariable("id") Integer id){
-        return new ResponseEntity<>(service.getOperation(id), HttpStatus.OK);
+    public ResponseEntity<Operation> getOperationById(@PathVariable("id") Integer id){
+        return new ResponseEntity<>(service.getOperationById(id), HttpStatus.OK);
     }
 
     @PutMapping("/operations/{id}")

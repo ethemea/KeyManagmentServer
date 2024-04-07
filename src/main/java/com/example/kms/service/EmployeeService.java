@@ -35,7 +35,7 @@ public class EmployeeService {
         _employee.setFirst_name(employee.getFirst_name());
         _employee.setSecond_name(employee.getSecond_name());
         _employee.setMiddle_name(employee.getMiddle_name());
-        _employee.setMiddle_name(employee.getPhoto_url());
+        _employee.setPhoto_url(employee.getPhoto_url());
         _employee.setEmployee_type(employee.getEmployee_type());
         return employeeRepository.save(_employee);
     }

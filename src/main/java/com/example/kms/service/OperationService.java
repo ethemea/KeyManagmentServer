@@ -41,7 +41,7 @@ public class OperationService {
         return operationRepository.findAllByShift(shift);
     }
 
-    public Operation getOperation(Integer id) {
+    public Operation getOperationById(Integer id) {
         return operationRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Not found operation with id = " + id));
     }

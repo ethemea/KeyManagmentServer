@@ -47,12 +47,12 @@ public class EmployeeController {
         return new ResponseEntity<>(service.updateEmployee(id, employee), HttpStatus.OK);
     }
 
-    @DeleteMapping("/employees/{id}")
+    /*@DeleteMapping("/employees/{id}")
     @Operation(summary = "Delete employee data and its user data", description = " ")
     public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable("id") Integer id) {
         service.deleteEmployee(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+    }*/ // сделать fire employee
 /*
     @DeleteMapping("/employees")
     public ResponseEntity<HttpStatus> deleteAllEmployees() {

@@ -14,8 +14,6 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
     public List<User> getAllUsers() {
-        //if (title == null)
-        /*else userRepository.findByTitleContaining(title).forEach(employees::add);*/
         return new ArrayList<>(userRepository.findAll());
 
     }
@@ -25,7 +23,7 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("Id " + id + " not found"));
         user.setPassword(form.getUsername());
         user.setPassword(form.getPassword());
-        //user.setSalt(form.getSalt());
+        //user.setSalt(form.getSalt()); // todo
         user.setRole(form.getRole());
         return userRepository.save(user);
     }
@@ -38,17 +36,4 @@ public class UserService {
         return userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Not found user with id = " + id));
     }
-
-   /* public Employee createEmployee(EmployeeForm employee) {
-
-        Employee _employee = userRepository.save(new Employee(employee.getFirst_name(),
-        employee.getSecond_name(), employee.getMiddle_name(), employee.getPhoto_url(), employee.getType()));
-        return _employee;
-    }
-
-    public Employee getEmployeeById(Integer id) {
-        Employee employee = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Not found Employee with id = " + id));
-        return employee;
-    }*/
 }

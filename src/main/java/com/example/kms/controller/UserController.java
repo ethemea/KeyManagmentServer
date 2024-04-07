@@ -1,7 +1,5 @@
 package com.example.kms.controller;
 
-
-import com.example.kms.entity.Employee;
 import com.example.kms.entity.User;
 import com.example.kms.form.RegForm;
 import com.example.kms.service.UserService;
@@ -47,14 +45,5 @@ public class UserController {
     public ResponseEntity<User> getUserById(@PathVariable(value = "id") Integer id) {
         return new ResponseEntity<>(service.getUserById(id), HttpStatus.OK);
     }
-/*
-    @DeleteMapping("/employees/{employeeId}/user")
-    public ResponseEntity<User> deleteUserOfEmployee(@PathVariable(value = "employeeId") Integer employeeId) {
-        if (!employeeRepository.existsById(employeeId)) {
-            throw new RuntimeException("Not found Employee with id = " + employeeId);
-        }
 
-        userRepository.deleteByEmployeeId(employeeId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }*/
 }

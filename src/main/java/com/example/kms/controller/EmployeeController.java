@@ -52,23 +52,5 @@ public class EmployeeController {
     public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable("id") Integer id) {
         service.deleteEmployee(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }*/ // сделать fire employee
-/*
-    @DeleteMapping("/employees")
-    public ResponseEntity<HttpStatus> deleteAllEmployees() {
-        employeeRepository.deleteAll();
-
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }*/
-
-    /*@GetMapping("/tutorials/published")
-    public ResponseEntity<List<Tutorial>> findByPublished() {
-        List<Tutorial> tutorials = employeeRepository.findByPublished(true);
-
-        if (tutorials.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-
-        return new ResponseEntity<>(tutorials, HttpStatus.OK);
-    }*/
+    }*/ // todo fire employee
 }

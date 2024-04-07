@@ -14,7 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
-    private final UserRepository userRepository;
     public List<Employee> getAllEmployees() {
         return new ArrayList<>(employeeRepository.findAll());
     }
@@ -38,12 +37,5 @@ public class EmployeeService {
         _employee.setPhoto_url(employee.getPhoto_url());
         _employee.setEmployee_type(employee.getEmployee_type());
         return employeeRepository.save(_employee);
-    }
-
-    public void deleteEmployee (Integer id) {
-        if (userRepository.existsById(id)) {
-            userRepository.deleteById(id);
-        }
-        employeeRepository.deleteById(id);
     }
 }

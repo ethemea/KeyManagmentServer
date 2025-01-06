@@ -1,25 +1,26 @@
 package com.example.kms;
+
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.servers.Server;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @OpenAPIDefinition(
         servers = {
-                @Server(
+                /*@Server(
                         description = "PROD ENV",
                         url = "https://muddled-event-production.up.railway.app"
-                )/*,
+                ),*/
                 @Server(
                         description = "Local ENV",
                         url = "http://localhost:8080"
-                )*/
+                )
         }
 )
 

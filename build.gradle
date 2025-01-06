@@ -14,7 +14,7 @@ java {
 repositories {
     mavenCentral()
 }
-
+ 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.2.3'
     // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui

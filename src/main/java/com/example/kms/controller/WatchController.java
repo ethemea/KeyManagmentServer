@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = {"http://localhost:8081", "https://kmsadmin-production.up.railway.app"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -34,7 +34,13 @@ public class WatchController {
     }
     @Operation(summary = "Watch creation", description = "Returns watch data after successful creation")
     @PostMapping("/watches")
-    public ResponseEntity<Watch> createWatch(Integer buildingNumber) {
+    public ResponseEntity<Watch> createWatch(String buildingNumber) {
         return new ResponseEntity<>(service.createWatch(buildingNumber), HttpStatus.CREATED);
+    }
+
+    @Operation(summary = "Update watch by id (change building number)", description = "Returns updated watch data")
+    @PutMapping("/watches/{id}")
+    public ResponseEntity<Watch> updateWatch(@PathVariable("id") Integer id, @RequestBody String buildingNumber) {
+        return new ResponseEntity<>(service.updateWatch(id, buildingNumber), HttpStatus.OK);
     }
 }

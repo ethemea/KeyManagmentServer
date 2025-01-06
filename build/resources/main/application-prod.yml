@@ -4,3 +4,10 @@ spring:
     username: ${PROD_DB_USERNAME}
     password: ${PROD_DB_PASSWORD}
     name: kms
+application:
+  security:
+    jwt:
+      secret-key: d7142f6f4fb93ab3b8cf78c523c7e65fc99f3db610f9efe5d4e395a2efd942f0
+      expiration: 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days

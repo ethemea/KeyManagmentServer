@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = {"http://localhost:8081", "https://kmsadmin-production.up.railway.app"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -30,5 +30,30 @@ public class AudienceController {
     @PostMapping("/audiences")
     public ResponseEntity<Audience> createAudience(@RequestBody AudienceForm form) {
         return new ResponseEntity<>(service.createAudience(form), HttpStatus.CREATED);
+    }
+
+    @Operation(summary = "Get audience by id", description = "Returns audience data")
+    @GetMapping("/audiences/{id}")
+    public ResponseEntity<Audience> getAudienceById(@PathVariable("id") Integer id) {
+        return new ResponseEntity<>(service.getAudienceById(id), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Add permission to audience by id", description = "Returns updated audience data")
+    @PutMapping("/permissions/{permissionId}/audiences/{audienceId}")
+    public ResponseEntity<Audience> addPermissionToAudience(@PathVariable(value = "permissionId") Integer permissionId, @PathVariable(value = "audienceId") Integer employeeId) {
+        return new ResponseEntity<>(service.addPermissionToAudience(permissionId, employeeId), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Delete permission from audience by id")
+    @DeleteMapping("/permissions/{permissionId}/audiences/{audienceId}")
+    public ResponseEntity<HttpStatus> deletePermissionFromEmployee(@PathVariable(value = "permissionId") Integer permissionId, @PathVariable(value = "audienceId") Integer audienceId) {
+        service.deletePermissionFromAudience(permissionId, audienceId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @Operation(summary = "Update audience by id", description = "Returns updated audience data")
+    @PutMapping("/audiences/{id}")
+    public ResponseEntity<Audience> updateAudience(@PathVariable("id") Integer id, @RequestBody AudienceForm form) {
+        return new ResponseEntity<>(service.updateAudience(id, form), HttpStatus.OK);
     }
 }

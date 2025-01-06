@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = {"http://localhost:8081", "https://kmsadmin-production.up.railway.app"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -27,23 +27,19 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @Operation(summary = "Update user data", description = "Returns updated user data")
-    @PutMapping("/users/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") Integer id, @RequestBody RegForm form) {
-        return new ResponseEntity<>(service.updateUser(form, id), HttpStatus.OK);
-    }
-
-    @Operation(summary = "Delete user by id", description = " ")
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") Integer id) {
-        service.deleteUser(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
     @Operation(summary = "Get user by id", description = "Returns user data by id")
-    @GetMapping({ "/users/{id}"/*, "/employees/{id}/user"*/ })
+    @GetMapping({ "/users/{id}" })
     public ResponseEntity<User> getUserById(@PathVariable(value = "id") Integer id) {
         return new ResponseEntity<>(service.getUserById(id), HttpStatus.OK);
     }
 
+    @Operation(summary = "Update user data", description = "Returns updated user data")
+    @PutMapping("/users/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable("id") Integer id, @RequestBody RegForm form) {
+        var updatedUser = service.updateUser(form, id);
+        if (updatedUser == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
 }

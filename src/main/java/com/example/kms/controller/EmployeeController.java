@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = {"http://localhost:8081", "https://kmsadmin-production.up.railway.app"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -29,28 +29,63 @@ public class EmployeeController {
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
-    @Operation(summary = "Employee creation", description = "Returns employee data after successful creation")
-    @PostMapping("/employees")
-    public ResponseEntity<Employee> createEmployee(@RequestBody EmployeeForm employee) {
-        return new ResponseEntity<>(service.createEmployee(employee), HttpStatus.CREATED);
-    }
-
     @Operation(summary = "Get employee by id", description = "Returns employee data")
     @GetMapping("/employees/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Integer id) {
         return new ResponseEntity<>(service.getEmployeeById(id), HttpStatus.OK);
     }
 
+    @Operation(summary = "Update employee data (and fire employee if needed)", description = "Returns updated employee data")
     @PutMapping("/employees/{id}")
-    @Operation(summary = "Update employee data", description = "Returns updated employee data")
     public ResponseEntity<Employee> updateEmployee(@PathVariable("id") Integer id, @RequestBody EmployeeForm employee) {
         return new ResponseEntity<>(service.updateEmployee(id, employee), HttpStatus.OK);
     }
 
-    /*@DeleteMapping("/employees/{id}")
-    @Operation(summary = "Delete employee data and its user data", description = " ")
-    public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable("id") Integer id) {
-        service.deleteEmployee(id);
+    @Operation(summary = "Generate QR for employee", description = "Returns updated employee data")
+    @PutMapping("/employees/{employeeId}/QRs")
+    public ResponseEntity<Employee> generateQRForEmployee(@PathVariable("employeeId") Integer employeeId) {
+        return new ResponseEntity<>(service.generateQRForEmployee(employeeId), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Get employee by QR", description = "Returns employee data")
+    @GetMapping("/QRs/{QR}/employees")
+    public ResponseEntity<Employee> getEmployeeByQR(@PathVariable("QR") String QR) {
+        var employee = service.getEmployeeByQR(QR);
+        if (employee == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(employee, HttpStatus.OK);
+    }
+
+    @Operation(summary = "Employee creation", description = "Returns employee data after successful creation")
+    @PostMapping("/employees")
+    public ResponseEntity<Employee> createEmployee(@RequestBody EmployeeForm employee) {
+        return new ResponseEntity<>(service.createEmployee(employee), HttpStatus.CREATED);
+    }
+
+    @Operation(summary = "Add employee to division by id", description = "Returns updated employee data")
+    @PutMapping("/divisions/{divisionId}/employees/{employeeId}")
+    public ResponseEntity<Employee> addEmployeeToDivision(@PathVariable(value = "divisionId") Integer divisionId, @PathVariable(value = "employeeId") Integer employeeId) {
+        return new ResponseEntity<>(service.addEmployeeToDivision(divisionId, employeeId), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Delete employee from division by id")
+    @DeleteMapping("/divisions/{divisionId}/employees/{employeeId}")
+    public ResponseEntity<HttpStatus> deleteEmployeeFromDivision(@PathVariable(value = "divisionId") Integer divisionId, @PathVariable(value = "employeeId") Integer employeeId) {
+        service.deleteEmployeeFromDivision(divisionId, employeeId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }*/ // todo fire employee
+    }
+
+    @Operation(summary = "Add permission to employee by id", description = "Returns updated employee data")
+    @PutMapping("/permissions/{permissionId}/employees/{employeeId}")
+    public ResponseEntity<Employee> addPermissionToEmployee(@PathVariable(value = "permissionId") Integer permissionId, @PathVariable(value = "employeeId") Integer employeeId) {
+        return new ResponseEntity<>(service.addPermissionToEmployee(permissionId, employeeId), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Delete permission from employee by id")
+    @DeleteMapping("/permissions/{permissionId}/employees/{employeeId}")
+    public ResponseEntity<HttpStatus> deletePermissionFromEmployee(@PathVariable(value = "permissionId") Integer permissionId, @PathVariable(value = "employeeId") Integer employeeId) {
+        service.deletePermissionFromEmployee(permissionId, employeeId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

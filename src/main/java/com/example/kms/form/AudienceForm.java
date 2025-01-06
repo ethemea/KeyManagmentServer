@@ -10,11 +10,13 @@ public class AudienceForm {
     @NotBlank
     private Integer number;
     @NotBlank
-    private Integer floor;
-    @NotBlank
     private Integer capacity;
     @NotBlank
-    private Signalisation signalisation;
+    private Boolean exist = true;
     @NotBlank
-    private AudienceType audienceType;
+    private Signalisation signalisation = Signalisation.ON;
+    @NotBlank
+    private AudienceType audience_type;
+    @NotBlank
+    private Integer image_id;
 }

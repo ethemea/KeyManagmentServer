@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = {"http://localhost:8081", "https://kmsadmin-production.up.railway.app"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -32,9 +32,31 @@ public class KeyController {
     public ResponseEntity<Key> createKey(@RequestBody KeyForm form) {
         return new ResponseEntity<>(service.createKey(form), HttpStatus.CREATED);
     }
+    @Operation(summary = "Generate QR for key", description = "Returns updated key data")
+    @PutMapping("/keys/{keyId}/QRs")
+    public ResponseEntity<Key> generateQRForKey(@PathVariable("keyId") Integer keyId) {
+        return new ResponseEntity<>(service.generateQRForKey(keyId), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Get key by QR", description = "Returns key data")
+    @GetMapping("/QRs/{QR}/keys")
+    public ResponseEntity<Key> getKeyByQR(@PathVariable("QR") String QR) {
+        var key = service.getKeyByQR(QR);
+        if (key == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(key, HttpStatus.OK);
+    }
+
     @Operation(summary = "Update key", description = "Returns updated key data")
     @PutMapping("/keys/{id}")
-    public ResponseEntity<Key> updateKey(@PathVariable("id") Integer id, KeyForm form) {
+    public ResponseEntity<Key> updateKey(@PathVariable("id") Integer id,@RequestBody KeyForm form) {
         return new ResponseEntity<>(service.updateKey(id, form), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Get key by id", description = "Returns key data")
+    @GetMapping("/keys/{id}")
+    public ResponseEntity<Key> getKeyById(@PathVariable("id") Integer id) {
+        return new ResponseEntity<>(service.getKeyById(id), HttpStatus.OK);
     }
 }

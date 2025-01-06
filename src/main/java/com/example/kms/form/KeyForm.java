@@ -9,7 +9,7 @@ public class KeyForm {
     @NotBlank
     private Integer audience_id;
     @NotBlank
-    private KeyState keyState;
+    private KeyState key_state = KeyState.RETURNED;
     @NotBlank
-    private boolean main;
+    private Boolean main;
 }

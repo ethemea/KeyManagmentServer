@@ -17,13 +17,22 @@ public class Key {
     @JoinColumn(name = "audience_id")
     private Audience audience;
     @Enumerated(EnumType.STRING)
-    private KeyState keyState;
-    private boolean main;
+    private KeyState key_state;
+    private Boolean main;
+    private String QR;
 
-    public Key(Audience audience, KeyState keyState, boolean main) {
+    public Key(Audience audience, KeyState key_state, Boolean main) {
         this.audience = audience;
-        this.keyState = keyState;
+        this.key_state = key_state;
         this.main = main;
+    }
+
+    public String getQR() {
+        return QR;
+    }
+
+    public void setQR(String QR) {
+        this.QR = QR;
     }
 
     public Audience getAudience() {
@@ -34,19 +43,19 @@ public class Key {
         this.audience = audience;
     }
 
-    public KeyState getKeyState() {
-        return keyState;
+    public KeyState getKey_state() {
+        return key_state;
     }
 
-    public void setKeyState(KeyState keyState) {
-        this.keyState = keyState;
+    public void setKey_state(KeyState key_state) {
+        this.key_state = key_state;
     }
 
-    public boolean isMain() {
+    public Boolean getMain() {
         return main;
     }
 
-    public void setMain(boolean main) {
+    public void setMain(Boolean main) {
         this.main = main;
     }
 

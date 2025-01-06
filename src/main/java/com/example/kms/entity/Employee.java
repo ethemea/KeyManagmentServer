@@ -2,9 +2,16 @@ package com.example.kms.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+@Getter
 @Entity(name = "employees")
 @Table
 @NoArgsConstructor
@@ -12,63 +19,81 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer employee_id;
-    private String first_name;
-    private String second_name;
-    private String middle_name;
-    private String photo_url;
+    @Column(name = "employee_id")
+    private Integer employeeId;
+    @Setter
+    @Column(name = "first_name")
+    private String firstName;
+    @Setter
+    @Column(name = "second_name")
+    private String secondName;
+    @Setter
+    @Column(name = "middle_name")
+    private String middleName;
+    @Setter
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "image_id")
+    private Image image;
+    @Setter
+    private String QR;
+    @Setter
     @Enumerated(EnumType.STRING)
-    private EmployeeType employee_type;
+    @Column(name = "employee_type")
+    private EmployeeType employeeType;
+    @Setter
+    @Enumerated(EnumType.STRING)
+    @Column(name = "employee_status")
+    private EmployeeStatus employeeStatus;
 
-    public Employee(String first_name, String second_name, String middle_name, String photo_url, EmployeeType employee_type) {
-        this.first_name = first_name;
-        this.second_name = second_name;
-        this.middle_name = middle_name;
-        this.photo_url = photo_url;
-        this.employee_type = employee_type;
+    @ManyToMany @JoinTable(
+            name = "divisions_employees",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "division_id"))
+    private Set<Division> divisions = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "permissions_employees",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "permission_id"))
+    private Set<Permission> permissions = new HashSet<>();
+
+    public Employee(String firstName, String secondName, String middleName, Image image, EmployeeType employeeType, EmployeeStatus employeeStatus) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.middleName = middleName;
+        this.image = image;
+        this.employeeType = employeeType;
+        this.employeeStatus = employeeStatus;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void addPermission(Permission permission) {
+        this.permissions.add(permission);
+        permission.getEmployees().add(this);
     }
 
-    public void setSecond_name(String second_name) {
-        this.second_name = second_name;
+    public void removePermission(Integer permission_id) {
+        Permission permission = this.permissions.stream().filter(p -> Objects.equals(p.getPermission_id(), permission_id)).findFirst().orElse(null);
+        if (permission != null) {
+            this.permissions.remove(permission);
+            permission.getEmployees().remove(this);
+        }
     }
 
-    public void setMiddle_name(String middle_name) {
-        this.middle_name = middle_name;
+    public void addDivision(Division division) {
+        this.divisions.add(division);
+        division.getEmployees().add(this);
     }
 
-    public void setPhoto_url(String photo_url) {
-        this.photo_url = photo_url;
+    public void removeDivision(Integer division_id) {
+        Division division = this.divisions.stream().filter(
+                d -> Objects.equals(d.getDivision_id(), division_id))
+                .findFirst()
+                .orElse(null);
+        if (division != null) {
+            this.divisions.remove(division);
+            division.getEmployees().remove(this);
+        }
     }
 
-    public void setEmployee_type(EmployeeType employee_type) {
-        this.employee_type = employee_type;
-    }
-
-    public String getFirst_name() {
-        return first_name;
-    }
-
-    public String getSecond_name() {
-        return second_name;
-    }
-
-    public String getMiddle_name() {
-        return middle_name;
-    }
-
-    public String getPhoto_url() {
-        return photo_url;
-    }
-
-    public EmployeeType getEmployee_type() {
-        return employee_type;
-    }
-
-    public Integer getEmployee_id() {
-        return employee_id;
-    }
 }

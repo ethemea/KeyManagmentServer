@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = {"http://localhost:8081", "https://kmsadmin-production.up.railway.app"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -38,8 +38,8 @@ public class ShiftController {
         return new ResponseEntity<>(service.getShiftById(id), HttpStatus.OK);
     }
 
-    @PutMapping("/shifts/{id}")
     @Operation(summary = "Add shift end date and time (finish shift)", description = "Returns updated shift data")
+    @PutMapping("/shifts/{id}")
     public ResponseEntity<Shift> endShift(@PathVariable("id") Integer id) {
         return new ResponseEntity<>(service.endShift(id), HttpStatus.OK);
     }

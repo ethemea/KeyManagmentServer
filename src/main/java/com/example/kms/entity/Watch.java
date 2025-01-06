@@ -2,9 +2,12 @@ package com.example.kms.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.relational.core.mapping.Table;
 
+@Getter
 @Entity(name = "watches")
 @Table
 @NoArgsConstructor
@@ -12,22 +15,13 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Watch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer watch_id;
-    private Integer building_number;
+    @Column(name = "watch_id")
+    private Integer watchId;
+    @Setter
+    @Column(name = "building_number")
+    private String buildingNumber;
 
-    public Watch(Integer building_number) {
-        this.building_number = building_number;
-    }
-
-    public Integer getBuilding_number() {
-        return building_number;
-    }
-
-    public void setBuilding_number(Integer building_number) {
-        this.building_number = building_number;
-    }
-
-    public Integer getWatch_id() {
-        return watch_id;
+    public Watch(String buildingNumber) {
+        this.buildingNumber = buildingNumber;
     }
 }
